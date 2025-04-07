@@ -1,15 +1,6 @@
-import mongoose, { Document, Schema } from 'mongoose';
-
-export interface IPackage extends Document {
-  title: string;
-  price: number;
-  nights: number;
-  days: number;
-  location: string;
-  category: 'Quick Gateway' | 'Adventure' | 'Relaxation' | 'Cultural' | 'Luxury';
-  description: string;
-  highlights: string[];
-}
+import mongoose, { Schema } from 'mongoose';
+import { IPackage } from '../interface/packageInterface';
+ // Import the interface
 
 const packageSchema: Schema = new Schema(
   {
@@ -29,4 +20,4 @@ const packageSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IPackage>('Package', packageSchema);
+export default mongoose.model<IPackage>('Package', packageSchema); // Use the interface here
