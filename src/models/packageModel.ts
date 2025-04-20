@@ -1,23 +1,31 @@
-import mongoose, { Schema } from 'mongoose';
-import { IPackage } from '../interface/packageInterface';
- // Import the interface
+// models/package.model.ts
+import mongoose from "mongoose";
 
-const packageSchema: Schema = new Schema(
-  {
-    title: { type: String, required: true },
-    price: { type: Number, required: true },
-    nights: { type: Number, required: true },
-    days: { type: Number, required: true },
-    location: { type: String, required: true },
-    category: {
-      type: String,
-      enum: ['Quick Gateway', 'Adventure', 'Relaxation', 'Cultural', 'Luxury'],
-      required: true,
-    },
-    description: { type: String, required: true },
-    highlights: [{ type: String, required: true }],
-  },
-  { timestamps: true }
-);
+const highlightSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+});
 
-export default mongoose.model<IPackage>('Package', packageSchema); // Use the interface here
+const itinerarySchema = new mongoose.Schema({
+  day: String,
+  title: String,
+  description: String,
+});
+
+const timedItemSchema = new mongoose.Schema({
+  value: String,
+  time: String,
+});
+
+const packageSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  price: { type: Number},
+  location: String,
+  description: String,
+  highlights: [highlightSchema],
+  itinerary: [itinerarySchema],
+  inclusions: [timedItemSchema],
+  exclusions: [timedItemSchema],
+});
+
+export const Package = mongoose.model("Package", packageSchema);

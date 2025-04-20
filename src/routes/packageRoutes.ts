@@ -3,8 +3,13 @@ import { getPackages, createPackage, getPackageById } from '../controllers/packa
 
 const router = express.Router();
 
+// Route for fetching all packages
 router.get('/', getPackages);
-router.get('/:id', getPackageById); // Now works!
+
+// Route for fetching a single package by ID
+router.get('/:id', getPackageById);
+
+// Route for creating a new package
 router.post('/', createPackage);
 
 export default router;

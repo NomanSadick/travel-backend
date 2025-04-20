@@ -1,5 +1,6 @@
 import { Request, Response, RequestHandler } from 'express';
-import Package from '../models/packageModel';
+import { Package } from '../models/packageModel';
+// import Package from '../models/packageModel';
 
 // GET all packages
 export const getPackages: RequestHandler = async (req, res) => {
@@ -28,12 +29,16 @@ export const getPackageById: RequestHandler = async (req, res) => {
 };
 
 // POST a new package
-export const createPackage: RequestHandler = async (req, res) => {
+export const createPackage = async (req: Request, res: Response) => {
+  console.log("Creating package with data:", req.body); // Debugging line
   try {
     const newPackage = new Package(req.body);
-    const saved = await newPackage.save();
-    res.status(201).json(saved);
-  } catch (error: any) {
-    res.status(400).json({ error: error.message });
+    const savedPackage = await newPackage.save();
+    console.log(savedPackage);
+    res.status(201).json(savedPackage);
+  
+  } catch (error) {
+    console.error("Error creating package:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
