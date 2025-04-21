@@ -1,7 +1,7 @@
-import multer, { FileFilterCallback } from "multer";
 import { Request } from "express";
-import path from "path";
 import fs from "fs";
+import multer, { FileFilterCallback } from "multer";
+import path from "path";
 
 // Ensure the uploads directory exists
 const uploadsDir = path.join(__dirname, "../../uploads");
@@ -12,6 +12,7 @@ if (!fs.existsSync(uploadsDir)) {
 // Set storage engine
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log("Destination:", '/uploads'+ file.originalname); // Log the destination path
     cb(null, uploadsDir); // Use the absolute path for the 'uploads' folder
   },
   filename: (req, file, cb) => {

@@ -19,8 +19,8 @@ const timedItemSchema = new mongoose.Schema({
 
 const packageSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  price: { type: Number},
-  // image: { type: String },
+  price: { type: Number },
+  image: { type: String },
   location: String,
   description: String,
   highlights: [highlightSchema],

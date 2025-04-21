@@ -1,5 +1,5 @@
-import { Request, Response, RequestHandler } from 'express';
-import { Package } from '../models/packageModel';
+import { Request, RequestHandler, Response } from "express";
+import { Package } from "../models/packageModel";
 // import Package from '../models/packageModel';
 
 // GET all packages
@@ -8,7 +8,7 @@ export const getPackages: RequestHandler = async (req, res) => {
     const packages = await Package.find();
     res.status(200).json(packages);
   } catch (error) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
@@ -19,12 +19,12 @@ export const getPackageById: RequestHandler = async (req, res) => {
     const singlePackage = await Package.findById(id);
 
     if (!singlePackage) {
-      res.status(404).json({ error: 'Package not found' });
+      res.status(404).json({ error: "Package not found" });
     }
 
     res.status(200).json(singlePackage);
   } catch (error) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
@@ -61,15 +61,10 @@ export const getPackageById: RequestHandler = async (req, res) => {
 //   }
 // };
 
-
-
-
-
 export const createPackage = async (req: Request, res: Response) => {
-  
   try {
-    const imagePath = req.file?.filename; // From multer
-    // console.log(req.file); // Log the file object to see its properties
+    const imagePath = req.file?.path; // From multer
+    console.log(imagePath); // Log the file object to see its properties
 
     const newPackage = new Package({
       ...req.body,
@@ -84,7 +79,6 @@ export const createPackage = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 // export const createPackage: RequestHandler = async (req, res) => {
 //   try {
