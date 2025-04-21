@@ -29,16 +29,90 @@ export const getPackageById: RequestHandler = async (req, res) => {
 };
 
 // POST a new package
+
+// export const createPackage: RequestHandler = async (req, res) => {
+//   try {
+//     // Extract the file path from multer
+//     const imagePath = req.file?.filename; // From multer
+//     console.log(req.file);
+
+//     // Validate required fields
+//     const { title, description } = req.body;
+//     if (!title) {
+//       res.status(400).json({ error: "Title is required" });
+//       return; // Explicitly return void
+//     }
+
+//     // Create a new package
+//     const newPackage = new Package({
+//       title,
+//       description,
+//       image: imagePath, // Save image filename
+//     });
+
+//     // Save the package to the database
+//     const savedPackage = await newPackage.save();
+//     res.status(201).json(savedPackage);
+//     return; // Explicitly return void
+//   } catch (error) {
+//     console.error("Error creating package:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//     return; // Explicitly return void
+//   }
+// };
+
+
+
+
+
 export const createPackage = async (req: Request, res: Response) => {
-  console.log("Creating package with data:", req.body); // Debugging line
-  try {
-    const newPackage = new Package(req.body);
-    const savedPackage = await newPackage.save();
-    console.log(savedPackage);
-    res.status(201).json(savedPackage);
   
+  try {
+    const imagePath = req.file?.filename; // From multer
+    // console.log(req.file); // Log the file object to see its properties
+
+    const newPackage = new Package({
+      ...req.body,
+      image: imagePath, // Save image filename
+    });
+
+    const savedPackage = await newPackage.save();
+    console.log("Saved package:", savedPackage); // Log the saved package to debug
+    res.status(201).json(savedPackage);
   } catch (error) {
     console.error("Error creating package:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+// export const createPackage: RequestHandler = async (req, res) => {
+//   try {
+//     const imagePath = req.file?.filename; // From multer
+//     console.log(req.file); // Log the file object to debug
+//     console.log(req.body); // Log the form fields to debug
+
+//     // Validate required fields
+//     const { title, description } = req.body;
+//     if (!title) {
+//       res.status(400).json({ error: "Title is required" });
+//       return; // Explicitly return void
+//     }
+
+//     // Create a new package
+//     const newPackage = new Package({
+//       title,
+//       description,
+//       image: imagePath, // Save image filename
+//     });
+
+//     // Save the package to the database
+//     const savedPackage = await newPackage.save();
+//     res.status(201).json(savedPackage);
+//     return; // Explicitly return void
+//   } catch (error) {
+//     console.error("Error creating package:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//     return; // Explicitly return void
+//   }
+// };

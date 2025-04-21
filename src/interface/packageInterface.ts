@@ -14,6 +14,7 @@ export interface IHighlight {
 export interface IPackage extends Document {
   title: string;
   price: number;
+  // image: string;
   nights: number;
   days: number;
   location: string;
