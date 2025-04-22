@@ -14,4 +14,3 @@ router.get('/:id', getPackageById);
 router.post('/', upload.single('image'), createPackage); // 'image' should match the field name in the form
 
 export default router;
-

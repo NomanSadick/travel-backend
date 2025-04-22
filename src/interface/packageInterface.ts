@@ -18,12 +18,7 @@ export interface IPackage extends Document {
   nights: number;
   days: number;
   location: string;
-  category:
-    | "Quick Gateway"
-    | "Adventure"
-    | "Relaxation"
-    | "Cultural"
-    | "Luxury";
+  category: 'Quick Gateway' | 'Adventure' | 'Relaxation' | 'Cultural' | 'Luxury';
   description: string;
   highlights: IHighlight[]; // Array of highlight objects
   itinerary: IItinerary[]; // Array of itinerary objects

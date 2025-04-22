@@ -1,4 +1,3 @@
-// models/package.model.ts
 import mongoose from "mongoose";
 
 const highlightSchema = new mongoose.Schema({
@@ -21,8 +20,10 @@ const packageSchema = new mongoose.Schema({
   title: { type: String, required: true },
   price: { type: Number },
   image: { type: String },
-  location: String,
-  description: String,
+  location: { type: String },
+  description: { type: String },
+  days: { type: Number, required: true },     // ✅ Added days
+  nights: { type: Number, required: true },   // ✅ Added nights
   highlights: [highlightSchema],
   itinerary: [itinerarySchema],
   inclusions: [timedItemSchema],
