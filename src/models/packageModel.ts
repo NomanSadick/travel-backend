@@ -22,6 +22,11 @@ const packageSchema = new mongoose.Schema({
   image: { type: String },
   location: { type: String },
   description: { type: String },
+  category: {
+    type: String,
+    enum: ['Quick Gateway', 'Adventure', 'Relaxation', 'Cultural', 'Luxury'],
+    required: true,
+  },
   days: { type: Number, required: true },     // ✅ Added days
   nights: { type: Number, required: true },   // ✅ Added nights
   highlights: [highlightSchema],
