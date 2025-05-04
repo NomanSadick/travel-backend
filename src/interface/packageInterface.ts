@@ -20,8 +20,8 @@ export interface IPackage extends Document {
   location: string;
   category: 'Quick Gateway' | 'Adventure' | 'Relaxation' | 'Cultural' | 'Luxury';
   description: string;
-  highlights: IHighlight[]; // Array of highlight objects
-  itinerary: IItinerary[]; // Array of itinerary objects
-  inclusions: string[]; // Array of inclusion items
-  exclusions: string[]; // Array of exclusion items
+  highlights: IHighlight[]; 
+  itinerary: IItinerary[]; 
+  inclusions: string[]; 
+  exclusions: string[]; 
 }

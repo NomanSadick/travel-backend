@@ -2,7 +2,7 @@ import { Request, Response, RequestHandler } from 'express';
 import { Package } from '../models/packageModel';
 // import Package from '../models/packageModel';
 
-// GET all packages
+
 export const getPackages: RequestHandler = async (req, res) => {
   try {
     const packages = await Package.find();
@@ -12,7 +12,7 @@ export const getPackages: RequestHandler = async (req, res) => {
   }
 };
 
-// GET a single package by ID
+
 export const getPackageById: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
@@ -32,21 +32,21 @@ export const getPackageById: RequestHandler = async (req, res) => {
 
 export const createPackage = async (req: Request, res: Response) => {
   try {
-    const imagePath = req.file?.path; // From multer
-    console.log(req.file); // Log the file object to debug
-    console.log(req.body); // Log the form fields to debug
+    const imagePath = req.file?.path; 
+    console.log(req.file); 
+    console.log(req.body); 
 
-    // Parse JSON strings into objects/arrays
+
     const highlights = req.body.highlights ? JSON.parse(req.body.highlights) : [];
     const itinerary = req.body.itinerary ? JSON.parse(req.body.itinerary) : [];
     const inclusions = req.body.inclusions ? JSON.parse(req.body.inclusions) : [];
     const exclusions = req.body.exclusions ? JSON.parse(req.body.exclusions) : [];
 
-    // Create a new package
+
     const newPackage = new Package({
       title: req.body.title,
       price: req.body.price,
-      image: imagePath, // Save image filename
+      image: imagePath, 
       nights: req.body.nights,
       days: req.body.days,
       location: req.body.location,
@@ -60,7 +60,7 @@ export const createPackage = async (req: Request, res: Response) => {
 
     // Save the package to the database
     const savedPackage = await newPackage.save();
-    console.log("Saved package:", savedPackage); // Log the saved package to debug
+    console.log("Saved package:", savedPackage); 
     res.status(201).json(savedPackage);
   } catch (error) {
     console.error("Error creating package:", error);

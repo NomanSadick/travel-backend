@@ -27,8 +27,8 @@ const packageSchema = new mongoose.Schema({
     enum: ['Quick Gateway', 'Adventure', 'Relaxation', 'Cultural', 'Luxury'],
     required: true,
   },
-  days: { type: Number, required: true },     // ✅ Added days
-  nights: { type: Number, required: true },   // ✅ Added nights
+  days: { type: Number, required: true },     
+  nights: { type: Number, required: true },
   highlights: [highlightSchema],
   itinerary: [itinerarySchema],
   inclusions: [timedItemSchema],
