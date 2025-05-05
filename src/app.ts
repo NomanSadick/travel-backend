@@ -6,7 +6,7 @@ import packageRoutes from './routes/packageRoutes';
 const app = express();
 
 app.use(cors({
-  origin: "https://travel-frontend-6rc3.vercel.app/",
+  origin: "https://travel-frontend-6rc3.vercel.app",
   credentials: true
 }));
 app.use(express.json()); 
