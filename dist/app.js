@@ -8,7 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const packageRoutes_1 = __importDefault(require("./routes/packageRoutes"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: "https://travel-frontend-6rc3.vercel.app/",
+    origin: "https://travel-frontend-6rc3.vercel.app",
     credentials: true
 }));
 app.use(express_1.default.json());
